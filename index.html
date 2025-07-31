@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Benimle Barışır Mısın?</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .note {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-yes {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .btn-yes:hover {
+      background-color: #45a049;
+      transform: scale(1.1);
+    }
+
+    .btn-no {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+    }
+
+    .message {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      color: #ffd700;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .btn { width: 100%; }
+      .buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Benimle barışır mısın?</h1>
+    <div class="note">Asele, bu karar bir cevaptan fazlası... Gözlerinle değil, kalbinle oku lütfen.</div>
+    <div class="buttons">
+      <button class="btn btn-yes" onclick="showMessage()">Evet 💖</button>
+      <button class="btn btn-no" id="noBtn">Hayır 🙁</button>
+    </div>
+    <div id="message" class="message"></div>
+  </div>
+
+  <!-- YouTube müzik -->
+  <iframe style="display:none;" width="0" height="0" src="https://www.youtube.com/embed/OMc6Zx57uZE?autoplay=1&loop=1&playlist=OMc6Zx57uZE"></iframe>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+
+    document.addEventListener('mousemove', function(e) {
+      const x = e.clientX;
+      const y = e.clientY;
+      const offset = 100;
+      const rect = noBtn.getBoundingClientRect();
+      const distance = Math.hypot(x - rect.left, y - rect.top);
+
+      if (distance < offset) {
+        noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+        noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+      }
+    });
+
+    function showMessage() {
+      message.innerText = "Birlikte yeni bir sayfa açalım mı? 💌";
+    }
+  </script>
+</body>
+</html>
